@@ -1,4 +1,4 @@
-void calculateSubtractValueFromMatrix(List<List<int>> matrix) {
+void calculateDiagonalValueFromMatrix(List<List<int>> matrix) {
   late List<int> arryPrimaryDiagonal = [];
   late List<int> arrySecondaryDiagonal = [];
   int result = 0;
