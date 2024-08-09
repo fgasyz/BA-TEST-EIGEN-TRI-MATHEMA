@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  code    String  @id @default("") @db.VarChar(10)
+  title   String? @db.VarChar(50)
+  author  String? @db.VarChar(50)
+  stock   Int?
+  status  Status  @default(exist)
+  members Loan[]
+
+  @@map("book")
+}
+
+model Member {
+  code       String  @id @default("") @db.VarChar(10)
+  name       String? @db.VarChar(50)
+  is_penalty Boolean @default(false)
+  books      Loan[]
+
+  @@map("member")
+}
+
+model Loan {
+  code_book   String   @default("") @db.VarChar(10)
+  code_member String   @default("") @db.VarChar(10)
+  insert_at   DateTime @default(now())
+  return_at   DateTime?
+  book        Book     @relation(fields: [code_book], references: [code], onDelete: Cascade, onUpdate: Cascade)
+  member      Member   @relation(fields: [code_member], references: [code], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([code_book, code_member])
+  @@index([code_member], map: "loan_code_member_fkey")
+  @@map("loan")
+}
+
+enum Status {
+  exist
+  borrowed
+}
