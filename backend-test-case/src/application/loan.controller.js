@@ -5,7 +5,10 @@ const LoanService = require('../domain/services/loan.service');
 loanRouter.get('/member/:id', async (req, res, next) => {
   try {
     const loan = await LoanService.getBooksAreLoanByEachMember(req.params.id);
-    res.json({ code_member: req.params.id, member_loan_qty: loan.length });
+    res.json({
+      code_member: req.params.id,
+      member_loan_books_qty: loan.length,
+    });
   } catch (error) {
     next(error);
   }
