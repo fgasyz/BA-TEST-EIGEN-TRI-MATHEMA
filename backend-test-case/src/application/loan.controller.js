@@ -7,7 +7,7 @@ loanRouter.get('/member/:id', async (req, res, next) => {
     const loan = await LoanService.getBooksAreLoanByEachMember(req.params.id);
     res.json({
       code_member: req.params.id,
-      member_loan_books_qty: loan.length,
+      member_loan_books: loan.length,
     });
   } catch (error) {
     next(error);
