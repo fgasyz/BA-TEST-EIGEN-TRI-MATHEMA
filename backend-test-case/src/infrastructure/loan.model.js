@@ -31,7 +31,7 @@ class LoanModel {
     return loan;
   }
 
-  async checkReturnBookIsLoanByCurrentMember(code_book, code_member) {
+  async checkBookIsLoanByCurrentMember(code_book, code_member) {
     const data = await prismaClient.loan.findFirst({
       where: {
         code_member: code_member,
