@@ -79,7 +79,7 @@ class LoanRepository {
       await this.bookModel.updateBookStatus(code_book, 'exist');
       return await this.loanModel.deleteLoan(code_book, code_member);
     } else {
-      throw new ClientError('member and book not found');
+      throw new ClientError('member or book not found');
     }
   }
 
