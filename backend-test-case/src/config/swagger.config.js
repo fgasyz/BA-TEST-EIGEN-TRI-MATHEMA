@@ -1,6 +1,6 @@
 // config/swagger.js
 const swaggerJsDoc = require('swagger-jsdoc');
-
+const path = require('path');
 
 const swaggerOptions = {
   definition: {
@@ -8,7 +8,7 @@ const swaggerOptions = {
     info: {
       title: 'API Documentation',
       version: '1.0.0',
-      description: 'Documentation for my Express API',
+      description: 'BE-TEST-EIGEN-TRI-MATHEMA',
     },
     servers: [
       {
@@ -17,12 +17,9 @@ const swaggerOptions = {
       },
     ],
   },
-  apis: ['../application/*.controller.js'], // Path ke file rute yang berisi anotasi Swagger
+  apis: [path.join(__dirname, '../application/*.controller.js')],
 };
 
 const swaggerSpec = swaggerJsDoc(swaggerOptions);
 
-module.exports = {
-  swaggerUi,
-  swaggerSpec,
-};
+module.exports = swaggerSpec;
