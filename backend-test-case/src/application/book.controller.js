@@ -9,7 +9,7 @@ const BookService = require('../domain/services/book.service');
  *     summary: Shows all existing books and quantities
  *     responses:
  *       200:
- *         description: Shows all existing books and quantities
+ *         description: Shows all existing books and quantities, Books that are being borrowed are not counted
  */
 booksRouter.get('/', async (req, res, next) => {
   try {
