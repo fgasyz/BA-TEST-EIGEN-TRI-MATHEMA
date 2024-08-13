@@ -4,7 +4,7 @@ const MemberRepository = require('../repositories/member.repository');
 const BookEntity = require('../entitas/book.entity');
 const MemberEntity = require('../entitas/book.entity');
 const LoanEntity = require('../entitas/loan.entity');
-
+const Loan = require('../entitas/loan.entity');
 class LoanService {
   constructor() {
     this.bookRepository = new BookRepository();
@@ -14,6 +14,8 @@ class LoanService {
 
   async createLoan(code_book, code_member, return_at) {
     const formatDate = new Date(return_at);
+    const loan = new Loan(code_book, code_member, return_at);
+    const { code_book, code_member, return_at } = loan;
     return await this.loanRepository.createLoan(
       code_book,
       code_member,
