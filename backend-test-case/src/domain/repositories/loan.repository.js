@@ -2,6 +2,7 @@ const LoanModel = require('../../infrastructure/loan.model');
 const BookModel = require('../../infrastructure/book.model');
 const MemberModel = require('../../infrastructure/member.model');
 const ClientError = require('../../exception/client.error');
+const Loan = require('../entitas/loan.entity');
 
 class LoanRepository {
   constructor() {
@@ -38,6 +39,8 @@ class LoanRepository {
           isMemberNotPenalty != null
         ) {
           await this.bookModel.updateBookStatus(code_book, 'borrowed');
+          const loan = new Loan(code_book, code_member, return_at);
+          const { code_book, code_member, return_at } = loan;
           return await this.loanModel.createLoan(
             code_book,
             code_member,
