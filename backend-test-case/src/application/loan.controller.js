@@ -127,7 +127,7 @@ loanRouter.post('/book/add', async (req, res, next) => {
 loanRouter.delete('/book/delete', async (req, res, next) => {
   try {
     const { code_book, code_member } = req.query;
-    const data = await LoanService.deleteLoan(code_book, code_member);
+    await LoanService.deleteLoan(code_book, code_member);
     res.json({ message: 'loan is deleted successfully' });
   } catch (error) {
     next(error);

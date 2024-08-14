@@ -18,7 +18,7 @@ class LoanService {
     return await this.loanRepository.createLoan(
       loan.code_book,
       loan.code_member,
-      loan.formatDate,
+      new Date(loan.return_at),
     );
   }
 
