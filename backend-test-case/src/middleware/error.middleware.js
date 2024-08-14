@@ -1,5 +1,4 @@
 const ClientError = require('../exception/client.error');
-const PrismaClientKnownRequestError = '@prisma/client/runtime/library';
 const errorMiddleware = async (err, req, res, next) => {
   if (!err) {
     next();
