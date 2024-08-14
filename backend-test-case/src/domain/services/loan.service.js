@@ -14,12 +14,11 @@ class LoanService {
 
   async createLoan(code_book, code_member, return_at) {
     const formatDate = new Date(return_at);
-    const loan = new Loan(code_book, code_member, return_at);
-    const { code_book, code_member, return_at } = loan;
+    const loan = new Loan(code_book, code_member, formatDate);
     return await this.loanRepository.createLoan(
-      code_book,
-      code_member,
-      formatDate,
+      loan.code_book,
+      loan.code_member,
+      loan.formatDate,
     );
   }
 
