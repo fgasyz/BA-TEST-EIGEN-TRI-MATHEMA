@@ -19,7 +19,7 @@ class LoanRepository {
       ? new Date(isMemberExist.finalty_date).getDate()
       : null;
 
-    if (now > penaltyDays && isMemberExist != null) {
+    if (now > penaltyDays && isMemberExist == null) {
       await this.memberModel.setMemberIsPinalty(code_member, false, null);
       const booksAreLoanByEachMember =
         await this.loanModel.getBooksAreLoanByEachMember(code_member);
